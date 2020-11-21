@@ -1,12 +1,15 @@
-import React from 'react';
-import {View, Image, Text} from 'react-native';
-const ProductItem = ({productItem}) => {
+import React, {useEffect} from 'react';
+import {View, Text} from 'react-native';
+
+function ProductItem(){
+    useEffect(() => {
+        console.log('Render--UseEffect');
+    }, []);
     return (
-        <View style={{ backgroundColor: 'grey'}}>
-            <Text> This Is Product List </Text>
-            <Image style={{ width: 100, height: 100 }} source={{ uri: productItem.uri }} />
+        <View>
+            <Text>ProductItems</Text>
         </View>
     );
+    
 }
-
 export default ProductItem;

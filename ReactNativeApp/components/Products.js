@@ -1,26 +1,17 @@
 import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import {View, Text} from 'react-native';
 import ProductItem from './ProductItem';
 
-function Products({ productList }) {
-
-    function renderProducts(items) {
-
+class Products extends React.Component {
+    render(){
+        console.log('Render -- child');
         return (
-            <View >
-                {
-                    items.map((product) => {
-                        return <ProductItem productItem={product} key={product.id} />
-                    })
-                }
+            <View>
+                <Text>Products</Text>
+                <Text>{this.props.title}</Text>
+                <ProductItem />
             </View>
         );
     }
-    return (
-        <ScrollView style={{ backgroundColor: 'coral', height: 80, marginBottom: 5 }}>
-            {renderProducts(productList)}
-        </ScrollView>
-    );
 }
-
 export default Products;
