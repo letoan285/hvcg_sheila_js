@@ -1,6 +1,13 @@
 import React from 'react';
 
-const Button = ({text, cls, handleAction}) => {
+interface IButton {
+    text: string;
+    cls: string;
+    handleAction: () => void;
+
+}
+
+const Button: React.FC<IButton> = ({text, cls, handleAction}) => {
     const myAction = () => {
         handleAction();
     }

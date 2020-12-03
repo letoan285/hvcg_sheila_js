@@ -1,17 +1,23 @@
 import React from 'react';
 import './App.css';
 import Button from './components/Button';
-import { products } from './constants/product';
+// import { products } from './constants/product';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 
 import Header from './components/Header';
 import ProductList from './components/ProductList';
 import NotFound from './components/NotFound';
+import ProductDetail from './components/ProductDetail';
+
+interface IProps {}
+interface IState {
+  products: any[]
+}
 // dry
-class App extends React.Component {
-  constructor() {
-    super();
+class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
     this.state = {
       products: []
     }
@@ -20,16 +26,12 @@ class App extends React.Component {
     this.setState(prevState => {
       return {
         ...prevState,
-        products: products
+        products: []
       }
     })
   }
 
   render() {
-
-    if (!this.state.products.length > 0) {
-      return <div style={{ background: 'black', color: 'white', width: '100%', height: '700px', top: 0, left: 0 }}>Loading ...</div>;
-    }
 
 
     return (
@@ -38,7 +40,8 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path="/" exact render={() => <HomePage />} />
-          <Route path="/products" render={() => <ProductList />} />
+          <Route path="/products" exact  render={() => <ProductList />} />
+          <Route path="/products/:id" render={() => <ProductDetail />} />
           <Route render={() => <NotFound />} />
         </Switch>
       </BrowserRouter>
